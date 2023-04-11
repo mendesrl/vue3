@@ -9,7 +9,7 @@ Treinamento completo e gratuito de Vue.js 3 do iniciante ao avançado, curso GRA
 
 - [x] Modulo 1: Introdução
 - [x] Modulo 2: Conceitos do Vue
-- [ ] Modulo 3: Início do projeto
+- [x] Modulo 3: Início do projeto
 - [ ] Modulo 4: Criando o dashboard
 - [ ] Modulo 5: Testes pro dashboard
 - [ ] Modulo 6: Deploy e Github actions do dashboard
