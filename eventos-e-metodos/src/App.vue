@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       showList: false,
+      currentTask:'',
       tasks: [
         { id: 1, name: "Estudar vue", completed: false },
         { id: 2, name: "Estudar react", completed: false },
@@ -18,16 +19,26 @@ export default {
   },
   methods: {
     remove(id) {
+      
       this.tasks = this.tasks.filter((item) => item.id != id);
     },
     completeTask(task) {
-      console.log("teste", task);
+     
       this.tasks = this.tasks.map((item) => {
         if (item.id === task.id) {
           return { ...item, completed: !item.completed };
         }
+        return {...item}
       });
     },
+    addTask() {
+      this.tasks.push({
+        id: this.tasks.length,
+        name: this.currentTask,
+        completed: false
+      });
+      this.currentTask = ''
+    }
   },
 };
 </script>
@@ -35,13 +46,23 @@ export default {
 <template>
   <h1>Minha lista de Tarefas</h1>
   <button @click="showList = !showList">Ver a lista</button>
-  <input type="text" v-focus />
+  <input type="text" v-focus v-model="currentTask" @keyup.enter="addTask()" />
   <ul v-if="showList">
-    <li v-for="task in tasks" @dblclick="completeTask(task)" :key="task.id">
+    <li 
+      v-for="task in tasks" 
+      @dblclick="completeTask(task)" 
+      :key="task.id"
+      :class="{
+        'line-throught': task.completed}">
       {{ task.name }}
       <button @click="remove(task.id)">&times;</button>
     </li>
   </ul>
 </template>
 
-<style scoped></style>
+<style scoped>
+.line-throught {
+  text-decoration: line-through;
+}
+
+</style>
